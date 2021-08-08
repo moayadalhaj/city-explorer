@@ -13,22 +13,30 @@ class App extends Component {
       locationName: "",
       latitude: "",
       longitude: "",
+      error: false,
     }
   }
 
   submitHandler = (e) => {
     e.preventDefault();
-    const locationName = e.target.locationName.value;
-    let url = `https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_IQ_TOKEN}&q=${locationName}&format=json`
-    axios.get(url).then(res => {
-      let data = res.data[0];
+    if (!e.target.locationName.value) {
       this.setState({
-        locationName: data.display_name,
-        latitude: data.lat,
-        longitude: data.lon
+        error: true
       })
-
-    });
+      console.log(this.props.error);
+    } else {
+      const locationName = e.target.locationName.value;
+      let url = `https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_IQ_TOKEN}&q=${locationName}&format=json`;
+      axios.get(url).then(res => {
+        let data = res.data[0];
+        this.setState({
+          locationName: data.display_name,
+          latitude: data.lat,
+          longitude: data.lon,
+          error: false
+        })
+      });
+    }
   }
   render() {
     return (
@@ -45,7 +53,7 @@ class App extends Component {
             </Button>
           </Form>
         </div>
-        <Location locationName={this.state.locationName} latitude={this.state.latitude} longitude={this.state.longitude} />
+        <Location locationName={this.state.locationName} latitude={this.state.latitude} longitude={this.state.longitude} error={this.state.error} />
       </div>
     )
   }
