@@ -11,7 +11,7 @@ class Location extends Component {
         </Alert>)
       }
 
-      {this.props.locationName && (<Card className="mx-auto" style={{ width: '700px', height: '400px' }}>
+      {this.props.locationName && (<Card className="mx-auto mb-3">
         <Card.Img variant="top" src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_IQ_TOKEN}&center=${this.props.latitude},${this.props.longitude}&zoom=16&size=700x400&markers=icon:large-red-cutout|${this.props.latitude},${this.props.longitude}`} alt="map" />
         <Card.Body className="bg-dark">
           <Card.Title className="text-white mb-2">{this.props.locationName}</Card.Title>
