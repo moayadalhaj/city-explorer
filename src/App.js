@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import './App.css';
 import Header from './components/Header';
 import axios from 'axios';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Container, Col, Row } from 'react-bootstrap';
 import Location from './components/Location';
+import Weather from './components/Weather';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {
@@ -14,6 +15,7 @@ class App extends Component {
       latitude: "",
       longitude: "",
       error: false,
+      weatherData: ""
     }
   }
 
@@ -36,6 +38,14 @@ class App extends Component {
           error: false
         })
       });
+      let url2 = `${process.env.REACT_APP_URL_PORT}/weather?searchQuery=${locationName}`;
+      axios.get(url2).then(res => {
+        let newWeatherData = res.data;
+        console.log(newWeatherData);
+        this.setState({
+          weatherData: newWeatherData
+        })
+      });
     }
   }
   render() {
@@ -53,7 +63,16 @@ class App extends Component {
             </Button>
           </Form>
         </div>
-        <Location locationName={this.state.locationName} latitude={this.state.latitude} longitude={this.state.longitude} error={this.state.error} />
+        <Container>
+          <Row xs={1} md={2} lg={2} >
+            <Col>
+              <Location locationName={this.state.locationName} latitude={this.state.latitude} longitude={this.state.longitude} error={this.state.error} />
+            </Col>
+            <Col>
+              <Weather locationName={this.state.locationName} weatherData={this.state.weatherData} />
+            </Col>
+          </Row>
+        </Container>
       </div>
     )
   }
