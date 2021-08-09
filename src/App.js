@@ -25,7 +25,6 @@ class App extends Component {
       this.setState({
         error: true
       })
-      console.log(this.props.error);
     } else {
       const locationName = e.target.locationName.value;
       let url = `https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_IQ_TOKEN}&q=${locationName}&format=json`;
@@ -38,7 +37,7 @@ class App extends Component {
           error: false
         })
       });
-      let url2 = `${process.env.REACT_APP_URL_PORT}/weather?searchQuery=${locationName}`;
+      let url2 = `https://city-explore-api-moayad.herokuapp.com/weather?searchQuery=${locationName}`;
       axios.get(url2).then(res => {
         let newWeatherData = res.data;
         console.log(newWeatherData);

@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 
-export class Weather extends Component {
+class Weather extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      citiesArray: ['paris', 'seatle', 'amman']
+    }
+  }
   render() {
     return (
       <>
-        {this.props.locationName && (
+        {this.state.citiesArray.includes(this.props.locationName.split(",")[0].toLowerCase()) && (
           <div>
             <h3>Weather information</h3>
             {this.props.weatherData.map((element, index) => {
@@ -16,7 +23,8 @@ export class Weather extends Component {
               );
             })}
           </div>
-        )}
+        )
+        }
       </>
     )
   }
