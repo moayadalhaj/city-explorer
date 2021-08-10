@@ -5,7 +5,7 @@ class Weather extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      citiesArray: ['paris', 'seatle', 'amman']
+      citiesArray: ['paris', 'seattle', 'amman']
     }
   }
   render() {
