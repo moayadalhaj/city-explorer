@@ -5,10 +5,11 @@ import axios from 'axios';
 import { Form, Button, Container, Col, Row } from 'react-bootstrap';
 import Location from './components/Location';
 import Weather from './components/Weather';
+import Movies from './components/Movies';
+import Footer from './components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import dotenv from "dotenv";
-// dotenv.config();
 const accessToken = process.env.REACT_APP_LOCATION_IQ_TOKEN;
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +18,8 @@ class App extends Component {
       latitude: "",
       longitude: "",
       error: false,
-      weatherData: []
+      weatherData: [],
+      moviesData: []
     }
   }
 
@@ -38,20 +40,24 @@ class App extends Component {
           longitude: data.lon,
           error: false
         })
-      });
-      let url2 = `https://city-explore-api-moayad.herokuapp.com/weather?searchQuery=${locationName}`;
-      axios.get(url2).then(res => {
-        let newWeatherData = res.data;
-        console.log(newWeatherData);
-        this.setState({
-          weatherData: newWeatherData
-        })
+        axios.get(`https://city-explore-api-moayad.herokuapp.com/weather?lat=${data.lat}&lon=${data.lon}`).then(res => {
+          let newWeatherData = res.data.slice(0, 6);
+          this.setState({
+            weatherData: newWeatherData
+          })
+        });
+        axios.get(`https://city-explore-api-moayad.herokuapp.com/movies?query=${locationName}`).then(res => {
+          this.setState({
+            moviesData: res.data
+          })
+          console.log(this.state.moviesData);
+        });
       });
     }
   }
   render() {
     return (
-      <div>
+      <div className="d-flex flex-column min-vh-100">
         <Header />
         <div>
           <Form onSubmit={(e) => { this.submitHandler(e) }} className="m-5 rounded" style={{ maxWidth: "350px" }}>
@@ -64,16 +70,20 @@ class App extends Component {
             </Button>
           </Form>
         </div>
-        <Container>
+        <Container className="pb-3">
           <Row xs={1} md={2} lg={2} >
             <Col>
               <Location locationName={this.state.locationName} latitude={this.state.latitude} longitude={this.state.longitude} error={this.state.error} />
             </Col>
             <Col>
-              <Weather locationName={this.state.locationName} weatherData={this.state.weatherData} />
+              <Weather latitude={this.state.latitude} weatherData={this.state.weatherData} />
             </Col>
           </Row>
+          <Row xs={1} md={3} lg={4}>
+            <Movies locationName={this.state.locationName} moviesData={this.state.moviesData} />
+          </Row>
         </Container>
+        <Footer />
       </div>
     )
   }
