@@ -6,7 +6,9 @@ import { Form, Button, Container, Col, Row } from 'react-bootstrap';
 import Location from './components/Location';
 import Weather from './components/Weather';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import dotenv from "dotenv";
+dotenv.config();
+const accessToken = process.env.REACT_APP_LOCATION_IQ_TOKEN;
 class App extends Component {
   constructor(props) {
     super(props);
@@ -27,7 +29,7 @@ class App extends Component {
       })
     } else {
       const locationName = e.target.locationName.value;
-      let url = `https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_IQ_TOKEN}&q=${locationName}&format=json`;
+      let url = `https://eu1.locationiq.com/v1/search.php?key=${accessToken}&q=${locationName}&format=json`;
       axios.get(url).then(res => {
         let data = res.data[0];
         this.setState({
