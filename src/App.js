@@ -6,8 +6,8 @@ import { Form, Button, Container, Col, Row } from 'react-bootstrap';
 import Location from './components/Location';
 import Weather from './components/Weather';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import dotenv from "dotenv";
-dotenv.config();
+// import dotenv from "dotenv";
+// dotenv.config();
 const accessToken = process.env.REACT_APP_LOCATION_IQ_TOKEN;
 class App extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class App extends Component {
       latitude: "",
       longitude: "",
       error: false,
-      weatherData: ""
+      weatherData: []
     }
   }
 
