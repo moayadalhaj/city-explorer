@@ -25,7 +25,10 @@ For the design, I only used Bootstrap library and some CSS.
 ## Request and Response
 
 ![WRRC](assests/wrrc.JPG)
-Name of feature: find the longitude and latitude of the entering location
+
+## Lab06
+
+### 1. Name of feature: find the longitude and latitude of the entering location
 
 Estimate of time needed to complete: 2
 
@@ -35,7 +38,7 @@ Finish time: 5:00
 
 Actual time needed to complete: 2
 
-Name of feature: render a map of the city
+### 2. Name of feature: render a map of the city
 
 Estimate of time needed to complete: 2
 
@@ -45,12 +48,34 @@ Finish time: 6:30
 
 Actual time needed to complete: 1:30
 
-Name of feature: Handel Errors in search box.
+### 3. Name of feature: Handel Errors in search box
 
 Estimate of time needed to complete: 1:30
 
 Start time: 7:00
 
 Finish time: 8:00
+
+Actual time needed to complete: 1
+
+## Lab-08
+
+### 5. Name of feature: (Front-end) render weather data related to the the searched city
+
+Estimate of time needed to complete: 1
+
+Start time: 7:00
+
+Finish time: 8:00
+
+Actual time needed to complete: 1
+
+### 6. Name of feature: (Front-end) render Movies related to the the searched city
+
+Estimate of time needed to complete: 1:30
+
+Start time: 10
+
+Finish time: 11
 
 Actual time needed to complete: 1
