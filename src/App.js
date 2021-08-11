@@ -17,7 +17,8 @@ class App extends Component {
       latitude: "",
       longitude: "",
       error: false,
-      weatherData: []
+      weatherData: [],
+      locationError: false
     }
   }
 
@@ -39,12 +40,18 @@ class App extends Component {
           error: false
         })
       });
-      let url2 = `https://city-explore-api-moayad.herokuapp.com/weather?searchQuery=${locationName}`;
+      let citiesArray = ['paris', 'seattle', 'amman'];
+      if (!citiesArray.includes(locationName.toLowerCase())) {
+        this.setState({
+          locationError: true
+        })
+      }
+      let url2 = `https://city-explorer-lab07-moayad.herokuapp.com/weather?searchQuery=${locationName}`;
       axios.get(url2).then(res => {
         let newWeatherData = res.data;
-        console.log(newWeatherData);
         this.setState({
-          weatherData: newWeatherData
+          weatherData: newWeatherData,
+          locationError: false
         })
       });
     }
@@ -70,7 +77,7 @@ class App extends Component {
               <Location locationName={this.state.locationName} latitude={this.state.latitude} longitude={this.state.longitude} error={this.state.error} />
             </Col>
             <Col>
-              <Weather locationName={this.state.locationName} weatherData={this.state.weatherData} />
+              <Weather locationName={this.state.locationName} weatherData={this.state.weatherData} locationError={this.state.locationError} />
             </Col>
           </Row>
         </Container>

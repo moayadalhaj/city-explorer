@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Alert } from 'react-bootstrap';
 
 class Weather extends Component {
 
@@ -11,6 +12,10 @@ class Weather extends Component {
   render() {
     return (
       <>
+        {this.props.locationError && (<Alert variant="danger" className="ms-5" style={{ width: '600px' }}>
+          <Alert.Heading>Error</Alert.Heading>
+          <p>This City not supported please choose Amman, Paris Or Seattle</p>
+        </Alert>)}
         {this.state.citiesArray.includes(this.props.locationName.split(",")[0].toLowerCase()) && (
           <div>
             <h3>Weather information</h3>
