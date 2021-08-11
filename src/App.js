@@ -76,9 +76,11 @@ class App extends Component {
               <Location locationName={this.state.locationName} latitude={this.state.latitude} longitude={this.state.longitude} error={this.state.error} />
             </Col>
             <Col>
-              <Weather latitude={this.state.latitude} weatherData={this.state.weatherData} />
+              <Weather locationName={this.state.locationName} weatherData={this.state.weatherData} />
             </Col>
           </Row>
+          {this.state.locationName && (
+            <h4 className="p-3 bg-dark text-white d-flex justify-content-center">Suggestion Movies For You</h4>)}
           <Row xs={1} md={3} lg={4}>
             <Movies locationName={this.state.locationName} moviesData={this.state.moviesData} />
           </Row>
