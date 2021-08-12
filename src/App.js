@@ -41,14 +41,14 @@ class App extends Component {
           longitude: data.lon,
           error: false
         })
-        axios.get(`https://city-explore-api-moayad.netlify.app/weather?lat=${data.lat}&lon=${data.lon}`).then(res => {
+        axios.get(`https://city-explore-api-moayad.herokuapp.com/weather?lat=${data.lat}&lon=${data.lon}`).then(res => {
           let newWeatherData = res.data.data.slice(0, 6);
           this.setState({
             weatherData: newWeatherData,
             message: res.data.message
           })
         });
-        axios.get(`https://city-explore-api-moayad.netlify.app/movies?query=${locationName}`).then(res => {
+        axios.get(`https://city-explore-api-moayad.herokuapp.com/movies?query=${locationName}`).then(res => {
           this.setState({
             moviesData: res.data
           })
