@@ -19,7 +19,8 @@ class App extends Component {
       longitude: "",
       error: false,
       weatherData: [],
-      moviesData: []
+      moviesData: [],
+      message: ""
     }
   }
 
@@ -40,17 +41,17 @@ class App extends Component {
           longitude: data.lon,
           error: false
         })
-        axios.get(`https://city-explore-api-moayad.herokuapp.com/weather?lat=${data.lat}&lon=${data.lon}`).then(res => {
-          let newWeatherData = res.data.slice(0, 6);
+        axios.get(`https://city-explore-api-moayad.netlify.app/weather?lat=${data.lat}&lon=${data.lon}`).then(res => {
+          let newWeatherData = res.data.data.slice(0, 6);
           this.setState({
-            weatherData: newWeatherData
+            weatherData: newWeatherData,
+            message: res.data.message
           })
         });
-        axios.get(`https://city-explore-api-moayad.herokuapp.com/movies?query=${locationName}`).then(res => {
+        axios.get(`https://city-explore-api-moayad.netlify.app/movies?query=${locationName}`).then(res => {
           this.setState({
             moviesData: res.data
           })
-          console.log(this.state.moviesData);
         });
       });
     }
@@ -71,6 +72,7 @@ class App extends Component {
           </Form>
         </div>
         <Container className="pb-3">
+          {this.state.message && (<p className='alert alert-secondary text-center fs-4 rounded' style={{ maxWidth: '300px' }}>{this.state.message}</p>)}
           <Row xs={1} md={2} lg={2} >
             <Col>
               <Location locationName={this.state.locationName} latitude={this.state.latitude} longitude={this.state.longitude} error={this.state.error} />

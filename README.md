@@ -24,7 +24,7 @@ For the design, I only used Bootstrap library and some CSS.
 
 ## Request and Response
 
-![WRRC](assests/wrrc.JPG)
+![WRRC](assests/wrrc.jpg)
 
 ## Lab06
 
