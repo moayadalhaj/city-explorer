@@ -5,7 +5,7 @@ class Location extends Component {
   render() {
     return (<>
       {
-        this.props.error && (<Alert variant="danger" className="ms-5" style={{ width: '500px' }}>
+        this.props.error && (<Alert variant="danger" className="ms-5" style={{ maxWidth: '400px' }}>
           <Alert.Heading>Error</Alert.Heading>
           <p>Unable to geocode, Please insert Location name!</p>
         </Alert>)
