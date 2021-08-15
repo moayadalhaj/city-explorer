@@ -5,7 +5,7 @@
 
 ## Overview
 
-This website allows users to explore any location by typing the location name in the input field and as a result, the Lat and the Long will be displayed with a map of that location and you can zoom in and out.
+This website allows users to explore any location by typing the location name in the input field and as a result, the Lat and the Long will be displayed with a map of that location and you can zoom in and out. Also, the response of weather data and movies for the searched location will be displayed using backend app.
 
 ## Getting Started
 
@@ -79,3 +79,13 @@ Start time: 10
 Finish time: 11
 
 Actual time needed to complete: 1
+
+### 7. Name of feature: Refactoring Weather and Movies components
+
+Estimate of time needed to complete: 1
+
+Start time: 5
+
+Finish time: 5:30
+
+Actual time needed to complete: 30 minutes
